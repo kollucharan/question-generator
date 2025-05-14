@@ -1,0 +1,220 @@
+.temp-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.temp-container>h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #222;
+}
+.temp-section {
+    margin-bottom: 2rem;
+
+}
+.temp-section .section-heading {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+.temp-section ul {
+    list-style: disc outside;
+    padding-left: 1.5rem;
+}
+
+.temp-section li {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+    color: #444;
+}
+.temp-section em {
+    color: #666;
+    background: #fffbea;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.temp-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    flex: none;
+
+}
+.temp-title {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.temp-toolbar {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.temp-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+
+.temp-title {
+    margin: 0;
+    font-size: 2rem;
+    flex: none;
+}
+
+
+.temp-toolbar {
+    display: flex;
+    gap: 0.5rem;
+    flex: none;
+}
+
+
+.btn {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    width: auto;
+    white-space: nowrap;
+    flex: none;
+}
+/* 1) Ensure the header is a flex‐row, with space between title and toolbar */
+.temp-header {
+    display: flex;
+    align-items: center;            /* vertical centering */
+    justify-content: space-between; /* push title to the left, toolbar to the right */
+    margin-bottom: 1rem;
+    flex-wrap: nowrap;              /* don’t allow them to wrap */
+  }
+  
+  /* 2) Reset any margins on the title so it sits flush with the toolbar */
+  .temp-title {
+    margin: 0;
+    font-size: 2rem;
+    flex-shrink: 0;   /* never shrink smaller than its text */
+  }
+  
+  /* 3) Lay out the buttons in a single row with a little gap */
+  .temp-toolbar {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;   /* keep full width for all buttons */
+  }
+  
+  /* 4) Style each button so they size to their content */
+  .btn {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    white-space: nowrap; /* prevent the text from wrapping onto two lines */
+    flex: none;          /* don’t stretch or shrink */
+  } 
+  .temp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;  /* ← align children on their text baselines */
+    margin-bottom: 1rem;
+    flex-wrap: nowrap;
+  }
+  
+  .temp-title {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1;         /* ← remove extra extra leading */
+    flex-shrink: 0;
+  }
+  
+  .temp-toolbar {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    flex: none;
+    vertical-align: middle; /* ← ensure button text sits mid-line */
+  }
+  
+  
+@media (max-width: 600px) {
+    .temp-container {
+        padding: 1rem;
+    }
+
+    .temp-section .section-heading {
+        font-size: 1.35rem;
+    }
+}
+/* Responsive Styles for Temp Component */
+@media (max-width: 768px) {
+    .temp-container {
+      margin: 1rem;
+      padding: 1rem;
+    }
+  
+    .temp-header {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+  
+    .temp-title {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  
+    .temp-toolbar {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  
+    .btn {
+      flex: 1 1 auto;
+      text-align: center;
+      padding: 0.5rem;
+    }
+  
+    .temp-section .section-heading {
+      font-size: 1.25rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .temp-container {
+      margin: 0.5rem;
+      padding: 0.75rem;
+    }
+  
+    .temp-title {
+      font-size: 1.25rem;
+    }
+  
+    .btn {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.9rem;
+    }
+  
+    .temp-section .section-heading {
+      font-size: 1.15rem;
+    }
+  
+    .temp-section li {
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+  }
+  
