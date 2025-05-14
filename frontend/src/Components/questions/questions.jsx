@@ -86,7 +86,7 @@ export default function InterviewForm() {
             <header className="header">
                 <div className="logo-container">
                     <img src={logo} alt="Company Logo" className="logo" onClick={goto}/>
-                 <p> for testing</p>
+                
                 </div>
             </header>
 
