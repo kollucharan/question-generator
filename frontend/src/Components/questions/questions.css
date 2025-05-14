@@ -202,4 +202,9 @@ body {
       font-size: 0.95rem;
     }
   }
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    /* pointer-events: none;  — not needed, the browser handles it */
+  }
   

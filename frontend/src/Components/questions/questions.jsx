@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './questions.css';
-import axios from 'axios'
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import logo from '../../assets/images/Talviewlogo.png.png'
-import { useNavigate } from "react-router"
+import { useNavigate } from 'react-router-dom'
 export default function InterviewForm() {
     const [roleTitle, setRoleTitle] = useState('');
     const [experience, setExperience] = useState('');
@@ -20,7 +22,8 @@ export default function InterviewForm() {
     });
     const [scenario, setScenario] = useState('');
     const [count, setCount] = useState(5);
-
+    const [loading,setLoading] =useState(false);
+    const [error,setError]=useState('');
     const handleCheckboxChange = (key) => {
         setAssessments(prev => ({ ...prev, [key]: !prev[key] }));
     };
@@ -29,7 +32,19 @@ export default function InterviewForm() {
   }
 
     const handleSubmit = async (e) => {
+    
+        setError('');
         e.preventDefault();
+
+    if(!roleTitle||!experience||!round){
+        return toast.error('Please fill in all required fields');
+    }
+
+    if (Object.values(assessments).every((v) => v === false)) {
+        return toast.error('Select at least one assessment');
+      }
+        setLoading(true);
+      
 
         try {
             const res = await axios.post(
@@ -50,8 +65,7 @@ export default function InterviewForm() {
             );
 
             console.log('Response:', res.data.questions);
-
-
+     
             navigate('/temp', {
                 state: {
                     questions: res.data.questions
@@ -60,6 +74,9 @@ export default function InterviewForm() {
 
         } catch (error) {
             console.error('Error generating questions:', error);
+        }
+        finally{
+            setLoading(false);
         }
     };
     return (
@@ -87,7 +104,8 @@ export default function InterviewForm() {
                                 onChange={(e) => setRoleTitle(e.target.value)}
                                 placeholder="Sales Development Representative"
                                 className="input"
-                                required
+                              
+                                disabled={loading}
                             />
                         </div>
 
@@ -98,7 +116,8 @@ export default function InterviewForm() {
                                 value={experience}
                                 onChange={(e) => setExperience(e.target.value)}
                                 className="select"
-                                required
+                               
+                                disabled={loading}
                             >
                                 <option value="" disabled>Select experience level</option>
                                 <option value="Fresher / Entry-Level">Fresher / Entry-Level</option>
@@ -115,7 +134,8 @@ export default function InterviewForm() {
                                 value={round}
                                 onChange={(e) => setRound(e.target.value)}
                                 className="select"
-                                required
+                                disabled={loading}
+                               
                             >
                                 <option value="" disabled>Select interview round</option>
                                 <option value="Pre-screening (video/self-recorded)">Pre-screening (video/self-recorded)</option>
@@ -146,6 +166,7 @@ export default function InterviewForm() {
                                                 value={key}
                                                 type="checkbox"
                                                 checked={checked}
+                                                disabled={loading}
                                                 onChange={() => handleCheckboxChange(key)}
                                             />
                                             {labelMap[key]}
@@ -162,15 +183,30 @@ export default function InterviewForm() {
                                 rows={3}
                                 placeholder="Add a brief scenario or task..."
                                 value={scenario}
+                                disabled={loading}
                                 onChange={(e) => setScenario(e.target.value)}
                                 className="textarea"
                             />
                         </div>
-                     
-                        <button type="submit" className="btn2">
-                            Generate Questions
+
+                     {error==='Allfields'&&<p style={{color:'red', alignItems:'center'}}>Enter all Required Fields</p>}
+                     {error==='check'&&<p style={{color:'red',alignItems:'center'}}>select what you want to assess</p>}
+                       
+                      
+                        <button type="submit" className="btn2"  disabled={loading}>
+                        {!loading ? "Generate Questions" : "Generating Questions"}
+                       
                         </button>
+                    
                     </form>
+
+                    <ToastContainer
+                  position="top-right"
+                 autoClose={1000}
+                hideProgressBar={false}
+           closeOnClick
+           pauseOnHover
+      />
                 </div>
             </div>
         </>
