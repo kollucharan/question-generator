@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation,  useNavigate,Navigate } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import './temp.css';
@@ -7,6 +7,7 @@ import logo from '../../assets/images/Talviewlogo.png.png'
 export default function Temp() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [copy,setCopy] =useState(false);
   let { questions } = location.state || {};
 
   
@@ -24,11 +25,16 @@ export default function Temp() {
 
 
   const handleCopy = () => {
+   
     const text = Object.entries(questions)
       .map(([h, list]) => `${h}:\n- ` + list.join('\n- '))
       .join('\n\n');
     navigator.clipboard.writeText(text);
-    alert('Copied to clipboard');
+    setCopy(true);
+
+    setTimeout(()=>{
+      setCopy(false);
+    },1500)
   };
   
 
@@ -85,7 +91,7 @@ export default function Temp() {
         <div className="temp-toolbar">
           <button onClick={() => navigate('/')} className="btn">Home</button>
           <button onClick={handleEdit} className="btn">Edit</button>
-          <button onClick={handleCopy} className="btn">Copy</button>
+          <button onClick={handleCopy} className="btn">{ copy ? "copied" : "Copy" }</button>
           <button onClick={handlePDF} className="btn">Download PDF</button>
         </div>
       </div>
