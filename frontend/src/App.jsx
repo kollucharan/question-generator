@@ -2,6 +2,7 @@
 import { Routes, BrowserRouter, Route } from "react-router"
 import InterviewForm from './Components/questions/questions'
 import Temp from "./Components/temp/temp"
+import './App.css'
 function App() {
 
  

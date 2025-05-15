@@ -5,10 +5,14 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import logo from '../../assets/images/Talviewlogo.png.png'
 import { useNavigate } from 'react-router-dom'
+import Card from '../Card/Card';
+import image1 from '../../images/hired.svg'
+import image2 from '../../images/writing.svg'
+import image3 from '../../images/selection-process.svg'
 export default function InterviewForm() {
     const [roleTitle, setRoleTitle] = useState('');
     const [experience, setExperience] = useState('');
-    const [round, setRound] = useState(''); 
+    const [round, setRound] = useState('');
     const navigate = useNavigate();
     const [assessments, setAssessments] = useState({
         communication: false,
@@ -22,29 +26,29 @@ export default function InterviewForm() {
     });
     const [scenario, setScenario] = useState('');
     const [count, setCount] = useState(5);
-    const [loading,setLoading] =useState(false);
-    const [error,setError]=useState('');
+    const [loading, setLoading] = useState(false);
+  
     const handleCheckboxChange = (key) => {
         setAssessments(prev => ({ ...prev, [key]: !prev[key] }));
     };
-  const goto =()=>{
-     window.open("https://www.talview.com/en/", "_blank");
-  }
-
-    const handleSubmit = async (e) => {
-    
-        setError('');
-        e.preventDefault();
-
-    if(!roleTitle||!experience||!round){
-        return toast.error('Please fill in all required fields');
+    const goto = () => {
+        window.open("https://www.talview.com/en/", "_blank");
     }
 
-    if (Object.values(assessments).every((v) => v === false)) {
-        return toast.error('Select at least one assessment');
-      }
+    const handleSubmit = async (e) => {
+
+     
+        e.preventDefault();
+
+        if (!roleTitle || !experience || !round) {
+            return toast.error('Please fill in all required fields');
+        }
+
+        if (Object.values(assessments).every((v) => v === false)) {
+            return toast.error('Select at least one assessment');
+        }
         setLoading(true);
-      
+
 
         try {
             const res = await axios.post(
@@ -65,7 +69,7 @@ export default function InterviewForm() {
             );
 
             console.log('Response:', res.data.questions);
-     
+
             navigate('/temp', {
                 state: {
                     questions: res.data.questions
@@ -73,9 +77,9 @@ export default function InterviewForm() {
             });
 
         } catch (error) {
-            console.error('Error generating questions:', error);
+            return toast.error('Error generating questions:', error);
         }
-        finally{
+        finally {
             setLoading(false);
         }
     };
@@ -85,13 +89,19 @@ export default function InterviewForm() {
 
             <header className="header">
                 <div className="logo-container">
-                    <img src={logo} alt="Company Logo" className="logo" onClick={goto}/>
-                 
+                    <img src={logo} alt="Company Logo" className="logo" onClick={goto} />
+
                 </div>
             </header>
 
+            <div >
+                <h1 className='red'>Create Tailored Interview Questions in Seconds with Our Interview Question Generator</h1>
+                <p className='red'>Stop wasting time searching for the perfect interview questions. Our AI interview question generator instantly creates structured, role-specific interview questions to help you hire smarter and faster.</p>
+            </div>
 
             <div className="container">
+
+
                 <div className="card">
                     <h2 className="title">Universal Interview Question Generator</h2>
                     <form onSubmit={handleSubmit} className="form">
@@ -104,7 +114,7 @@ export default function InterviewForm() {
                                 onChange={(e) => setRoleTitle(e.target.value)}
                                 placeholder="Sales Development Representative"
                                 className="input"
-                              
+
                                 disabled={loading}
                             />
                         </div>
@@ -116,7 +126,7 @@ export default function InterviewForm() {
                                 value={experience}
                                 onChange={(e) => setExperience(e.target.value)}
                                 className="select"
-                               
+
                                 disabled={loading}
                             >
                                 <option value="" disabled>Select experience level</option>
@@ -135,7 +145,7 @@ export default function InterviewForm() {
                                 onChange={(e) => setRound(e.target.value)}
                                 className="select"
                                 disabled={loading}
-                               
+
                             >
                                 <option value="" disabled>Select interview round</option>
                                 <option value="Pre-screening (video/self-recorded)">Pre-screening (video/self-recorded)</option>
@@ -189,26 +199,34 @@ export default function InterviewForm() {
                             />
                         </div>
 
-                     {error==='Allfields'&&<p style={{color:'red', alignItems:'center'}}>Enter all Required Fields</p>}
-                     {error==='check'&&<p style={{color:'red',alignItems:'center'}}>select what you want to assess</p>}
-                       
-                      
-                        <button type="submit" className="btn2"  disabled={loading}>
-                        {!loading ? "Generate Questions" : "Generating Questions"}
-                       
-                        </button>
                     
+
+                        <button type="submit" className="btn2" disabled={loading}>
+                            {!loading ? "Generate Questions" : "Generating Questions"}
+
+                        </button>
+
                     </form>
 
                     <ToastContainer
-                  position="top-right"
-                 autoClose={1000}
-                hideProgressBar={false}
-           closeOnClick
-           pauseOnHover
-      />
+                        position="top-right"
+                        autoClose={1000}
+                        hideProgressBar={false}
+                        closeOnClick
+                        pauseOnHover
+                    />
                 </div>
             </div>
+  
+            <h2 className='red'>  Why Choose Our AI Interview Question Generator ? </h2>
+
+         <div className='card-div'>     
+       <Card image={image1}  header='Generate Interview Questions Instantly' description='Say goodbye to manual research. Our AI interview question generator delivers structured, job-specific questions in seconds.'/>
+       <Card image={image2}  header='Empower Your Hiring Process with AI' description='Leverage cutting-edge AI in recruitment to automate prep work, accelerate decision-making, and reduce time-to-hire.'/>
+       <Card image={image3}  header='Tailored for Any Role & Industry' description='Whether you’re hiring a software developer, sales leader, or marketing pro, our tool crafts perfectly matched interview questions every time'/>
+         </div>
+       
+
         </>
     );
 }
