@@ -1,20 +1,42 @@
 
-body {
+   body {
     margin: 0;
     padding: 0;
+    font-family: 'Muli', sans-serif;
   }
   
-.container {
-    min-height: 100vh;
-    background: #f9fafb;
+  .talview-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .container {
+   
     display: flex;
     align-items: flex-start;
     justify-content: center;
     padding-top: 30px;
   }
   
+  
+  .red {
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #133A59;
+  }
+  .zed{
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color:#2c2c2c
+  }
+  
   .card {
-    background: #ffffff;
     border-radius: 1rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     max-width: 600px;
@@ -25,18 +47,18 @@ body {
   .title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #1f2937;
+    color:#133A59;
     margin-bottom: 1.5rem;
   }
   
   .form-group {
     margin-bottom: 1.5rem;
   }
-
+  
   label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #374151;
+    color: #2c2c2c;
   }
   
   .input,
@@ -63,7 +85,7 @@ body {
     display: flex;
     align-items: center;
     font-size: 0.875rem;
-    color: #374151;
+    color: #2c2c2c;
   }
   
   .checkbox-label input {
@@ -82,11 +104,11 @@ body {
   .slider-value {
     margin-left: 0.5rem;
     font-size: 0.875rem;
-    color: #4b5563;
+    color: #2c2c2c;
   }
   
   .btn {
-    width: 100% ;
+    width: 100%;
     background: #2563eb;
     color: #fff;
     padding: 0.75rem;
@@ -95,8 +117,9 @@ body {
     font-weight: 500;
     cursor: pointer;
   }
+  
   .btn2 {
-    width: 100% ;
+    width: 100%;
     background: #2563eb;
     color: #fff;
     padding: 0.75rem;
@@ -109,35 +132,51 @@ body {
   .btn:hover {
     background: #1d4ed8;
   }
+  
   .header {
-    background-color: #1D4ED8; 
+    background-color: #1D4ED8;
     color: white;
     padding: 1rem 2rem;
-     display: flex;
-    justify-content:space-between; 
-    /* align-items: center; */
+    display: flex;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    width: 100vw;
+    width: 100%;
   }
-  
- .logo-container{
-    display:flex;
-    justify-content: space-between;
-
- }
   
   .logo {
     height: 45px;
     width: auto;
-    cursor:pointer;
+    cursor: pointer;
   }
   
   .site-title {
     font-size: 1.25rem;
     font-weight: 600;
   }
-  /* Responsive Styles */
-@media (max-width: 768px) {
+  
+  .card-div {
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+  
+  /* Styling for the feature cards at the bottom */
+  .card-div .card {
+    width: 30%;  /* Increased from default width */
+    min-width: 280px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card-div .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  
+  @media (max-width: 768px) {
     .container {
       padding: 20px;
       align-items: flex-start;
@@ -174,15 +213,21 @@ body {
       padding: 0.65rem;
     }
   
-    /* .header {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-   */
     .logo {
       height: 40px;
       margin-bottom: 0.5rem;
+    }
+    
+    .card-div {
+      flex-direction: column;
+      align-items: center;
+      padding: 0 15px;
+    }
+    
+    .card-div .card {
+      width: 90%;
+      min-width: unset;
+      margin-bottom: 20px;
     }
   }
   
@@ -202,9 +247,8 @@ body {
       font-size: 0.95rem;
     }
   }
+  
   button:disabled {
     cursor: not-allowed;
     opacity: 0.6;
-    /* pointer-events: none;  — not needed, the browser handles it */
   }
-  
