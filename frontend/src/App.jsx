@@ -6,7 +6,7 @@ function App() {
 
  
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/question-generator">
       <Routes>
         <Route path='/' element={<InterviewForm />}></Route>
         <Route path="/temp" element={<Temp/>}></Route>
