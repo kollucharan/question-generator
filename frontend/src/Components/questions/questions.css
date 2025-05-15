@@ -42,7 +42,7 @@ body {
   .input,
   .select,
   .textarea {
-    width: 100%;
+    width: 95%;
     border: 1px solid #d1d5db;
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
@@ -174,12 +174,12 @@ body {
       padding: 0.65rem;
     }
   
-    .header {
+    /* .header {
       flex-direction: column;
       align-items: center;
       text-align: center;
     }
-  
+   */
     .logo {
       height: 40px;
       margin-bottom: 0.5rem;
