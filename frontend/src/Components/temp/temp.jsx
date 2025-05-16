@@ -4,6 +4,7 @@ import { useLocation,  useNavigate,Navigate } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import './temp.css';
 import logo from '../../assets/images/Talviewlogo.png.png'
+import Header from '../Header/Header';
 export default function Temp() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -79,17 +80,18 @@ export default function Temp() {
   return (
   <>
 
-            <header className="header">
+            {/* <header className="header">
                 <div className="logo-container">
                     <img src={logo} alt="Company Logo" className="logo" onClick={goto}/>
                 </div>
                    
-            </header>
+            </header> */}
+            <Header/>
     <div className="temp-container">
       <div className="temp-header">
         <h3 className="temp-title">Generated Questions</h3>
         <div className="temp-toolbar">
-          <button onClick={() => navigate('/')} className="btn">Home</button>
+          <button onClick={() => navigate('/')} className="btn">Back</button>
           <button onClick={handleEdit} className="btn">Edit</button>
           <button onClick={handleCopy} className="btn">{ copy ? "copied" : "Copy" }</button>
           <button onClick={handlePDF} className="btn">Download PDF</button>
