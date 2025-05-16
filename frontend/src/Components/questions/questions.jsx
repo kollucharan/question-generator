@@ -104,7 +104,7 @@ export default function InterviewForm() {
       
             <div >
                 <h1 className='red'>Create Tailored Interview Questions in Seconds with Our Interview Question Generator</h1>
-                <p className='zed'>Say goodbye to endless searches for the right interview questions. Our AI-powered generator instantly delivers structured, role-specific questions—helping you hire smarter, faster.</p>
+                <p className='zed'>Say goodbye to endless searches for the right interview questions. Our AI-powered generator instantly delivers structured, role-specific questions, helping you hire smarter and faster.</p>
             </div>
 
             <div className="container">
