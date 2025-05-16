@@ -104,7 +104,7 @@ export default function InterviewForm() {
       
             <div >
                 <h1 className='red'>Create Tailored Interview Questions in Seconds with Our Interview Question Generator</h1>
-                <p className='zed'>Stop wasting time searching for the perfect interview questions. Our AI interview question generator instantly creates structured, role-specific interview questions to help you hire smarter and faster.</p>
+                <p className='zed'>Say goodbye to endless searches for the right interview questions. Our AI-powered generator instantly delivers structured, role-specific questions—helping you hire smarter, faster.</p>
             </div>
 
             <div className="container">
@@ -229,9 +229,9 @@ export default function InterviewForm() {
             <h2 className='red1'>  Why Choose Our AI Interview Question Generator ? </h2>
 
          <div className='card-div'>     
-       <Card image={image5}  header='Generate Interview Questions Instantly' description='Say goodbye to manual research. Our AI interview question generator delivers structured, job-specific questions in seconds.'/>
+       <Card image={image5}  header='Generate Interview Questions Instantly' description='Forget manual research, our AI interview question generator delivers structured, job-specific questions in seconds.'/>
        <Card image={image4}  header='Empower Your Hiring Process with AI' description='Leverage cutting-edge AI in recruitment to automate prep work, accelerate decision-making, and reduce time-to-hire.'/>
-       <Card image={image3}  header='Tailored for Any Role & Industry' description='Whether you’re hiring a software developer, sales leader, or marketing pro, our tool crafts perfectly matched interview questions every time'/>
+       <Card image={image3}  header='Tailored for Any Role & Industry' description='Whether you’re hiring a software developer, sales leader, or marketing pro, our tool crafts perfectly matched interview questions every time.'/>
          </div>
        
    <div className='footer'>
