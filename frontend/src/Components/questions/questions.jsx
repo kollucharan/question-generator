@@ -59,7 +59,8 @@ export default function InterviewForm() {
 
         try {
             const res = await axios.post(
-               'https://question-generator-b5n0.onrender.com/generate',
+                'https://question-generator-b5n0.onrender.com/generate',
+                 
                 {
                     role: roleTitle,
                     experience,
@@ -106,7 +107,9 @@ export default function InterviewForm() {
             <div >
                 <h1 className='red'>Create Tailored Interview Questions in Seconds with Our Interview Question Generator</h1>
                 <p className='zed'>Say goodbye to endless searches for the right interview questions. Our AI-powered generator instantly delivers structured, role-specific questions, helping you hire smarter and faster.</p>
-            </div>
+            </div> 
+
+             
 
             <div className="container">
 
@@ -196,11 +199,11 @@ export default function InterviewForm() {
                         </div>
 
                         <div className="form-group">
-                            <label>Scenario or Task (Optional)</label>
+                            <label>Scenario or Responsibiity(optional)</label>
                             <textarea
                                 name="scenario"
                                 rows={3}
-                                placeholder="Add a brief scenario or task..."
+                                placeholder="Tailor the questions by describing what the candidate would be expected to do (Lead a backend team building a real-time chat app)."
                                 value={scenario}
                                 disabled={loading}
                                 onChange={(e) => setScenario(e.target.value)}
@@ -210,9 +213,19 @@ export default function InterviewForm() {
 
                     
 
-                        <button type="submit" className="btn2" disabled={loading}>
-                            {!loading ? "Generate Questions" : "Generating Questions"}
+                        {/* <button type="submit" className="btn2" disabled={loading}>
+                            {loading ? "Generating..." : "Generate Questions"}
 
+                        </button> */}
+                         <button type="submit" className={`btn2 ${loading ? 'btn-loading' : ''}`} disabled={loading}>
+                            {loading ? (
+                                <>
+                                    <span className="spinner"></span>
+                                    Generating Questions...
+                                </>
+                            ) : (
+                                "Generate Questions"
+                            )}
                         </button>
 
                     </form>
@@ -226,7 +239,7 @@ export default function InterviewForm() {
                     />
                 </div>
             </div>
-  
+   
             <h2 className='red1'>  Why Choose Our AI Interview Question Generator ? </h2>
 
          <div className='card-div'>     
@@ -234,6 +247,8 @@ export default function InterviewForm() {
        <Card image={image4}  header='Empower Your Hiring Process with AI' description='Leverage cutting-edge AI in recruitment to automate prep work, accelerate decision-making, and reduce time-to-hire.'/>
        <Card image={image3}  header='Tailored for Any Role & Industry' description='Whether you’re hiring a software developer, sales leader, or marketing pro, our tool crafts perfectly matched interview questions every time.'/>
          </div>
+
+         
        
    <div className='footer'>
       <Footer/>

@@ -58,7 +58,7 @@ const headingMap = {
 
    
     const systemPrompt = `
-You are an expert Interviewing Manager drafting interview content based on user inputs. Output ONLY valid JSON.
+You are an expert Interviewing Manager drafting interview questions based on user inputs. Output ONLY valid JSON.
 
 1️⃣ Validate the job role:
    • Must contain at least one letter [A–Z or a–z].
