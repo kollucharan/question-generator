@@ -59,7 +59,7 @@ export default function InterviewForm() {
 
         try {
             const res = await axios.post(
-               'http://localhost:5000/generate',
+               'https://question-generator-b5n0.onrender.com/generate',
                 {
                     role: roleTitle,
                     experience,
