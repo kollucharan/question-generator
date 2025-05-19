@@ -3,15 +3,11 @@ import './questions.css';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import logo from '../../assets/images/Talviewlogo.png.png'
 import { useNavigate } from 'react-router-dom'
 import Card from '../Card/Card';
-import image1 from '../../image/hired.svg'
-import image2 from '../../image/writing.svg'
 import image3 from '../../image/selection-process.svg'
 import image4 from '../../image/ai.svg'
 import image5 from '../../image/writingfinal.svg'
-
 import Header from '../Header/Header.jsx'
 import Footer from '../footer/footer.jsx';
 
@@ -46,19 +42,24 @@ export default function InterviewForm() {
      
         e.preventDefault();
 
+
+
         if (!roleTitle || !experience || !round) {
             return toast.error('Please fill in all required fields');
-        }
+        } 
+
+       
 
         if (Object.values(assessments).every((v) => v === false)) {
             return toast.error('Select at least one assessment');
         }
+    
         setLoading(true);
 
 
         try {
             const res = await axios.post(
-                'https://question-generator-b5n0.onrender.com/generate',
+               'http://localhost:5000/generate',
                 {
                     role: roleTitle,
                     experience,
@@ -74,7 +75,11 @@ export default function InterviewForm() {
                 }
             );
 
-            console.log('Response:', res.data.questions);
+           
+             if (res.data.error) {
+           toast.error(res.data.error);
+           return;
+           }
 
             navigate('/temp', {
                 state: {
@@ -83,8 +88,10 @@ export default function InterviewForm() {
             });
 
         } catch (error) {
-            return toast.error('Error generating questions:', error);
-        }
+        const errMsg = error.response?.data?.error || 'An unexpected error occurred';
+       toast.error(errMsg);  // displays "Invalid input provided."
+     }
+        
         finally {
             setLoading(false);
         }
@@ -93,13 +100,7 @@ export default function InterviewForm() {
 
         <>
 
-            {/* <header className="header">
-                <div className="logo-container">
-                    <img src={logo} alt="Company Logo" className="logo" onClick={goto} />
-
-                </div>
-            </header> */}
-           
+               
     <Header/>
       
             <div >
