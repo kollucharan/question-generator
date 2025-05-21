@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useLocation,  useNavigate,Navigate } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import './temp.css';
@@ -79,13 +79,6 @@ export default function Temp() {
 
   return (
   <>
-
-            {/* <header className="header">
-                <div className="logo-container">
-                    <img src={logo} alt="Company Logo" className="logo" onClick={goto}/>
-                </div>
-                   
-            </header> */}
             <Header/>
     <div className="temp-container">
       <div className="temp-header">

@@ -3,6 +3,9 @@
     margin: 0;
     padding: 0;
     font-family: 'Muli', sans-serif;
+    background: linear-gradient(135deg, #F8FCFF, #F3F9FF, #F9F3FF, #FBF6FF, #FFFFFF);
+  min-height: 100vh; 
+
   }
   
   .talview-body {
@@ -44,7 +47,7 @@
     margin-left: auto;
     margin-right: auto;
     color: #133A59;
-    margin-top: 20px;
+    margin-top: 60px;
     margin-bottom: 30px;
   }
   
@@ -54,6 +57,7 @@
     max-width: 600px;
     width: 100%;
     padding: 2rem;
+     background: #fff;
   }
   
   .title {
@@ -82,7 +86,7 @@
     padding: 0.5rem 1rem;
     font-size: 1rem;
   }
-  
+
   .textarea {
     resize: vertical;
   }
@@ -172,21 +176,12 @@
     margin-left: auto;
     margin-right: auto;
     flex-wrap: wrap;
+    /* background: #fff; */
     padding: 0 20px;
   }
   
-  /* Styling for the feature cards at the bottom */
-  .card-div .card {
-    width: 30%;  /* Increased from default width */
-    min-width: 280px;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card-div .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  }
+
+
   
   @media (max-width: 768px) {
     .container {
@@ -235,13 +230,10 @@
       align-items: center;
       padding: 0 15px;
       margin-bottom: 30px;
+     
     }
     
-    .card-div .card {
-      width: 90%;
-      min-width: unset;
-      margin-bottom: 20px;
-    }
+ 
   }
   
   @media (max-width: 480px) {
@@ -372,5 +364,116 @@
     width: 12px;
     height: 12px;
     margin-right: 5px;
+  }
+}
+.textarea::placeholder {
+  /* color: #2c2c2c;  */
+  font-family: 'Muli', sans-serif;
+
+  
+}
+
+
+
+
+.react-select__control {
+  border: 1px solid #d1d5db !important;
+  border-radius: 0.5rem !important;
+  min-height: 38px !important;
+  box-shadow: none !important;
+  font-size: 1rem !important;
+}/* Custom styling for React Select to match other select fields */
+
+/* Container style */
+.react-select-container {
+  width: 95%;
+}
+
+/* Control (the main input box) hover state */
+.react-select__control:hover {
+  border-color: #1d4ed8 !important;
+  cursor: pointer;
+}
+
+/* Dropdown indicator (the arrow) */
+.react-select__dropdown-indicator {
+  color: #6b7280 !important;
+}
+
+/* Value container (where selected options appear) */
+.react-select__value-container {
+  padding: 0.5rem 1rem !important;
+}
+
+/* Menu (dropdown) */
+.react-select__menu {
+  border-radius: 0.5rem !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+  z-index: 100 !important;
+}
+
+/* Options */
+.react-select__option {
+  font-size: 1rem !important;
+  color: #2c2c2c !important;
+  padding: 0.5rem 1rem !important;
+}
+
+/* Selected option */
+.react-select__option--is-selected {
+  background-color: #e5e7eb !important;
+  color: #2c2c2c !important;
+}
+
+/* Hovered option */
+.react-select__option--is-focused:not(.react-select__option--is-selected) {
+ /* main */
+  background-color: rgb(173, 178, 230); 
+  color: #2c2c2c !important;
+}
+
+/* Multi-value (selected tags) */
+.react-select__multi-value {
+  background-color: #e5e7eb !important;
+  border-radius: 0.25rem !important;
+}
+
+.react-select__multi-value__label {
+  color: #2c2c2c !important;
+  font-size: 0.875rem !important;
+  padding: 0.25rem 0.5rem !important;
+}
+
+/* Focus state */
+.react-select__control--is-focused {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 1px #2563eb !important;
+}
+
+/* Disabled state */
+.react-select__control--is-disabled {
+  background-color: #f3f4f6 !important;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .react-select__control {
+    font-size: 0.95rem !important;
+  }
+  
+  .react-select__option {
+    font-size: 0.95rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .react-select__control {
+    font-size: 0.9rem !important;
+  }
+  
+  .react-select__option {
+    font-size: 0.9rem !important;
   }
 }
