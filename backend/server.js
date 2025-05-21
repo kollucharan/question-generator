@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import axios from "axios";
 import dotenv from "dotenv";
-
+import pool from "./database.js";
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -45,9 +45,11 @@ const headingMap = {
 
 
  app.post("/generate", async (req, res) => {
+  // console.log('request came');
   try {
     const { role, experience, round, assessments, scenario, count } = req.body;
-
+   
+    console.log(assessments);
     
     const sectionLines = assessments
       .map(key => {
@@ -123,7 +125,12 @@ ${scenario ? `Scenario: ${scenario}` : ''}
 
     if (questionsObj.error) {
       return res.status(400).json({ error: questionsObj.error });
-    }
+    } 
+
+     await pool.query(
+      "INSERT INTO roles(role) VALUES ($1)",
+      [role]
+    );
 
     res.json({ questions: questionsObj });
   } catch (err) {
