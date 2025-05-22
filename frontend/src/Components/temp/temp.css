@@ -90,40 +90,40 @@
     white-space: nowrap;
     flex: none;
 }
-/* 1) Ensure the header is a flex‐row, with space between title and toolbar */
+
 .temp-header {
     display: flex;
-    align-items: center;            /* vertical centering */
-    justify-content: space-between; /* push title to the left, toolbar to the right */
+    align-items: center;            
+    justify-content: space-between; 
     margin-bottom: 1rem;
-    flex-wrap: nowrap;              /* don’t allow them to wrap */
+    flex-wrap: nowrap;              
   }
   
-  /* 2) Reset any margins on the title so it sits flush with the toolbar */
+ 
   .temp-title {
     margin: 0;
     font-size: 2rem;
-    flex-shrink: 0;   /* never shrink smaller than its text */
+    flex-shrink: 0;   
   }
   
-  /* 3) Lay out the buttons in a single row with a little gap */
+  
   .temp-toolbar {
     display: flex;
     gap: 0.5rem;
-    flex-shrink: 0;   /* keep full width for all buttons */
+    flex-shrink: 0;   
   }
   
-  /* 4) Style each button so they size to their content */
+
   .btn {
     padding: 0.5rem 1rem;
     cursor: pointer;
-    white-space: nowrap; /* prevent the text from wrapping onto two lines */
-    flex: none;          /* don’t stretch or shrink */
+    white-space: nowrap; 
+    flex: none;          
   } 
   .temp-header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;  /* ← align children on their text baselines */
+    align-items: baseline;  
     margin-bottom: 1rem;
     flex-wrap: nowrap;
   }
@@ -131,7 +131,7 @@
   .temp-title {
     margin: 0;
     font-size: 2rem;
-    line-height: 1;         /* ← remove extra extra leading */
+    line-height: 1;         
     flex-shrink: 0;
   }
   
@@ -146,7 +146,7 @@
     cursor: pointer;
     white-space: nowrap;
     flex: none;
-    vertical-align: middle; /* ← ensure button text sits mid-line */
+    vertical-align: middle; 
   }
   
   
@@ -159,7 +159,7 @@
         font-size: 1.35rem;
     }
 }
-/* Responsive Styles for Temp Component */
+
 @media (max-width: 768px) {
     .temp-container {
       margin: 1rem;

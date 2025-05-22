@@ -129,12 +129,12 @@ export default function InterviewForm() {
                                 name="roleTitle"
                                 value={roleTitle}
                                 onChange={(e) => setRoleTitle(e.target.value)}
-                                placeholder="Sales Development Representative"
+                                placeholder="e.g., Backend Developer"
                                 className="input"
                                 disabled={loading}
                             />
                         </div>
- <div className="form-group">
+   <div className="form-group">
               <label>Candidate Experience Level</label>
               <Select
                 name="experience"
