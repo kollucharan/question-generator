@@ -48,7 +48,7 @@ export default function Header() {
             className="dropdown-toggle"
             onClick={() => setDropdownOpen((o) => !o)}
           >
-           AI Agents▾
+           AI Tools▾
           </button>
 
           <div className="dropdown-menu">
