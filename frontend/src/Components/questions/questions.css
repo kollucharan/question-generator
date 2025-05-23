@@ -38,7 +38,9 @@
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    color:#2c2c2c;
+    /* color:#2c2c2c; */
+    color:#4F5052;
+    /* font-size:20px; */
     /* margin-top: 30px; */
   }
   .red1{
