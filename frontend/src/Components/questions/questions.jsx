@@ -4,6 +4,8 @@ import './questions.css';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import { useNavigate } from 'react-router-dom'
 import Card from '../Card/Card';
 import image3 from '../../image/selection-process.svg'
@@ -11,6 +13,7 @@ import image4 from '../../image/ai.svg'
 import image5 from '../../image/writingfinal.svg'
 import Header from '../Header/Header.jsx'
 import Footer from '../footer/footer.jsx';
+import finalGif from '../../assets/images/loader-Qton.gif'
 
 export default function InterviewForm() {
     const [roleTitle, setRoleTitle] = useState('');
@@ -31,7 +34,7 @@ export default function InterviewForm() {
     const [count, setCount] = useState(5);
     const [loading, setLoading] = useState(false);
 
-
+   const [showLoaderPopup,setShowLoaderPopup]=useState(false);
 
     const [selectedOptions, setSelectedOptions] = useState([]);
     
@@ -69,6 +72,7 @@ export default function InterviewForm() {
         }
 
         setLoading(true);
+        setShowLoaderPopup(true);
         try {
             const res = await axios.post(
                 'https://question-generator-b5n0.onrender.com/generate',
@@ -88,12 +92,12 @@ export default function InterviewForm() {
                 }
             );
 
-
+        //    setShowLoaderPopup(false);
             if (res.data.error) {
                 toast.error(res.data.error);
                 return;
             }
-
+            
             navigate('/temp', {
                 state: {
                     questions: res.data.questions
@@ -107,6 +111,7 @@ export default function InterviewForm() {
 
         finally {
             setLoading(false);
+             setShowLoaderPopup(false);
         }
     };
     return (
@@ -194,14 +199,15 @@ export default function InterviewForm() {
                         </div>
 
                         <button type="submit" className={`btn2 ${loading ? 'btn-loading' : ''}`} disabled={loading}>
-                            {loading ? (
+                            {/* {loading ? (
                                 <>
                                     <span className="spinner"></span>
                                     Generating Questions...
                                 </>
                             ) : (
                                 "Generate Questions"
-                            )}
+                            )} */}
+                                Generate Questions
                         </button>
 
                     </form>
@@ -214,7 +220,19 @@ export default function InterviewForm() {
                         pauseOnHover
                     />
                 </div>
-            </div>
+            </div> 
+
+            
+        <Popup
+          open={showLoaderPopup}
+          modal
+          closeOnDocumentClick={false}
+            lockScroll={false}    
+          contentStyle={{ width: '175px', height: '175px', padding: '1rem', background: '#ffffff', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          overlayStyle={{ background: 'rgba(0,0,0,0.2)' }}
+        >
+          <img src={finalGif} alt="Loading..." style={{ width: '200px', height: '200px' }} />
+        </Popup>
 
             <h2 className='red1'>  Why Choose Our AI Interview Question Generator ? </h2>
 
@@ -226,7 +244,7 @@ export default function InterviewForm() {
 
             <div className='footer'>
                 <Footer />
-            </div>
+            </div> 
         </>
     );
 } 
