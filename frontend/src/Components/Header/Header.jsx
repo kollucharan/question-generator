@@ -15,7 +15,7 @@ export default function Header() {
 
   const dropdownItems = [
     { text: "JD Generator", url: "https://ai-agents.talview.com/jd-generator" },
-    { text: "Q-ton", url: "https://www.talview.com/ai-quiz-generator" },
+    { text: "Q-ton", url: "https://ai-agents.talview.com/ai-quiz-generator" },
   ];
 
   return (
