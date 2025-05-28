@@ -94,10 +94,11 @@ export default function InterviewForm() {
 
         //    setShowLoaderPopup(false);
             if (res.data.error) {
+                 setShowLoaderPopup(false);
                 toast.error(res.data.error);
                 return;
             }
-            
+             setShowLoaderPopup(false);
             navigate('/temp', {
                 state: {
                     questions: res.data.questions
@@ -105,13 +106,14 @@ export default function InterviewForm() {
             });
 
         } catch (error) {
+             setShowLoaderPopup(false);
             const errMsg = error.response?.data?.error || 'An unexpected error occurred';
             toast.error(errMsg); 
         }
 
         finally {
             setLoading(false);
-             setShowLoaderPopup(false);
+            //  setShowLoaderPopup(false);
         }
     };
     return (
