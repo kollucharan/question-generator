@@ -328,7 +328,7 @@
   }
 }
 
-/* Responsive styles for loaders */
+
 @media (max-width: 768px) {
   .loader {
     width: 60px;
@@ -384,57 +384,57 @@
   min-height: 38px !important;
   box-shadow: none !important;
   font-size: 1rem !important;
-}/* Custom styling for React Select to match other select fields */
+}
 
-/* Container style */
+
 .react-select-container {
   width: 95%;
 }
 
-/* Control (the main input box) hover state */
+
 .react-select__control:hover {
   border-color: #1d4ed8 !important;
   cursor: pointer;
 }
 
-/* Dropdown indicator (the arrow) */
+
 .react-select__dropdown-indicator {
   color: #6b7280 !important;
 }
 
-/* Value container (where selected options appear) */
+
 .react-select__value-container {
   padding: 0.5rem 1rem !important;
 }
 
-/* Menu (dropdown) */
+
 .react-select__menu {
   border-radius: 0.5rem !important;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
   z-index: 100 !important;
 }
 
-/* Options */
+
 .react-select__option {
   font-size: 1rem !important;
   color: #2c2c2c !important;
   padding: 0.5rem 1rem !important;
 }
 
-/* Selected option */
+
 .react-select__option--is-selected {
   background-color: #e5e7eb !important;
   color: #2c2c2c !important;
 }
 
-/* Hovered option */
+
 .react-select__option--is-focused:not(.react-select__option--is-selected) {
- /* main */
+
   background-color: rgb(173, 178, 230); 
   color: #2c2c2c !important;
 }
 
-/* Multi-value (selected tags) */
+
 .react-select__multi-value {
   background-color: #e5e7eb !important;
   border-radius: 0.25rem !important;
@@ -446,20 +446,20 @@
   padding: 0.25rem 0.5rem !important;
 }
 
-/* Focus state */
+
 .react-select__control--is-focused {
   border-color: #2563eb !important;
   box-shadow: 0 0 0 1px #2563eb !important;
 }
 
-/* Disabled state */
+
 .react-select__control--is-disabled {
   background-color: #f3f4f6 !important;
   opacity: 0.6 !important;
   cursor: not-allowed !important;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   .react-select__control {
     font-size: 0.95rem !important;

@@ -72,7 +72,7 @@
   align-items: center;
 }
 
-/* Toggle button */
+
 .dropdown-toggle {
   background: none;
   border: none;
@@ -88,7 +88,7 @@
 
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 15px); /* Increased gap between button and dropdown */
+  top: calc(100% + 15px); 
   left: 0;
   background: #fff;
   border-radius: 0.25rem;
@@ -98,14 +98,14 @@
   z-index: 10;
 }
 
-/* Add invisible bridge to prevent dropdown from closing */
+
 .custom-dropdown::after {
   content: '';
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
-  height: 15px; /* Same as the gap we added above */
+  height: 15px; 
   background: transparent;
   z-index: 9;
 }
@@ -163,7 +163,7 @@
     align-items: flex-start;
   }
   
-  /* Remove the invisible bridge on mobile */
+
   .custom-dropdown::after {
     display: none;
   }

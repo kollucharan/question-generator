@@ -11,25 +11,16 @@ const app = express();
 app.use(express.json());
 
 const allowedOrigins = [
-  ' https://questiongenerato.netlify.app',
+  'https://questiongenerato.netlify.app',
   'https://ai-agents.talview.com',
-  
-
 ];
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: allowedOrigins,
   credentials: true,
 };
 
 app.use(cors(corsOptions));
-// app.use(cors());
 
 const headingMap = {
   communication: "Communication Skills",
