@@ -188,7 +188,7 @@ export default function InterviewForm() {
                         </div>
 
                         <div className="form-group">
-                            <label>Scenario or Responsibility(optional)</label>
+                            <label>Scenario or Responsibility (optional)</label>
                             <textarea
                                 name="scenario"
                                 rows={3}
