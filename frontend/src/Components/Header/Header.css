@@ -93,7 +93,8 @@
   background: #fff;
   border-radius: 0.25rem;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  min-width: 160px;
+  min-width: 180px;
+   white-space: nowrap; 
   display: none;
   z-index: 10;
 }
