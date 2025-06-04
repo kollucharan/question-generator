@@ -40,8 +40,11 @@ const headingMap = {
   try {
     const { role, experience, round, assessments, scenario, count } = req.body;
    
-    console.log(assessments);
-    
+    // console.log(assessments);
+      await pool.query(
+      "INSERT INTO roles(role) VALUES ($1)",
+      [role]
+    );
     const sectionLines = assessments
       .map(key => {
         const title = headingMap[key] || key;
@@ -111,21 +114,16 @@ ${scenario ? `Scenario: ${scenario}` : ''}
     try {
       questionsObj = JSON.parse(raw);
     } catch (e) {
-      return res.status(502).json({ error: 'AI response not valid JSON', raw });
+      return res.status(502).json({ error: 'Server error. Please try again later.', raw });
     }
 
     if (questionsObj.error) {
       return res.status(400).json({ error: questionsObj.error });
     } 
 
-     await pool.query(
-      "INSERT INTO roles(role) VALUES ($1)",
-      [role]
-    );
-
     res.json({ questions: questionsObj });
   } catch (err) {
-    console.error('Error generating questions:', err);
+    // console.error('Error generating questions:', err);
     res.status(500).json({ error: 'Failed to generate questions.' });
   }
 });
