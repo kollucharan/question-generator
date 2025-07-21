@@ -10,17 +10,18 @@ const app = express();
 
 app.use(express.json());
 
-const allowedOrigins = [
-  'https://questiongenerato.netlify.app',
-  'https://ai-agents.talview.com',
-];
+// const allowedOrigins = [
+//   'https://questiongenerato.netlify.app',
+//   'https://ai-agents.talview.com',
+// ];
 
-const corsOptions = {
-  origin: allowedOrigins,
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: allowedOrigins,
+//   credentials: true,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 
 const headingMap = {
   communication: "Communication Skills",
@@ -36,15 +37,15 @@ const headingMap = {
 
 
  app.post("/generate", async (req, res) => {
-  // console.log('request came');
+  
   try {
-    const { role, experience, round, assessments, scenario, count } = req.body;
+    const { role, experience, round, assessments, scenario, count ,email} = req.body;
    
-    // console.log(assessments);
-      await pool.query(
-      "INSERT INTO roles(role) VALUES ($1)",
-      [role]
-    );
+  
+    //   await pool.query(
+    //   "INSERT INTO roles(role,email) VALUES ($1,$2)",
+    //   [role,email]
+    // );
     const sectionLines = assessments
       .map(key => {
         const title = headingMap[key] || key;
@@ -123,12 +124,11 @@ ${scenario ? `Scenario: ${scenario}` : ''}
 
     res.json({ questions: questionsObj });
   } catch (err) {
-    // console.error('Error generating questions:', err);
     res.status(500).json({ error: 'Failed to generate questions.' });
   }
 });
 
 
 app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
+  console.log(`Server listening on ${PORT}`);
 });
