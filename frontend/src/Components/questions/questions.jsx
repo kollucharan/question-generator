@@ -33,8 +33,10 @@ export default function InterviewForm() {
     const [scenario, setScenario] = useState('');
     const [count, setCount] = useState(5);
     const [loading, setLoading] = useState(false);
+   const [email, setEmail] = useState('');
+  const [emailpopup, setEmailpoup] = useState(false);
 
-   const [showLoaderPopup,setShowLoaderPopup]=useState(false);
+  //  const [showLoaderPopup,setShowLoaderPopup]=useState(false);
 
     const [selectedOptions, setSelectedOptions] = useState([]);
     
@@ -65,25 +67,55 @@ export default function InterviewForm() {
         { value: 'objectionHandling', label: 'Objection Handling / Sales Pitching' },
     ];
     
+
+   
+     const closePopup = () => {
+       setEmailpoup(false);
+  };
+     const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+ 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!roleTitle || !experience || !round||selectedOptions.length===0) {
+        if (!roleTitle || !experience || !round || selectedOptions.length === 0) {
             return toast.error('Please fill in all required fields');
         }
 
+        
+      setEmailpoup(true);
+    };
+
+   
+    const handleEmailSubmit = async () => {
+       
+        if (!email.trim()) {
+            return toast.error('Email is required');
+          
+        }
+
+        if (!validateEmail(email)) {
+           return toast.error('Enter valid Business Email');
+        }
+
+        // setEmailError('');
+       setEmailpoup(false);
         setLoading(true);
-        setShowLoaderPopup(true);
+        // setShowLoaderPopup(true);
+
         try {
             const res = await axios.post(
                 'https://question-generator-b5n0.onrender.com/generate',
-
                 {
                     role: roleTitle,
                     experience,
                     round,
-                    assessments: selectedOptions.map((t)=>t.value),
+                    assessments: selectedOptions.map((t) => t.value),
                     scenario,
                     count,
+                    email: email, 
                 },
                 {
                     headers: {
@@ -92,13 +124,13 @@ export default function InterviewForm() {
                 }
             );
 
-        //    setShowLoaderPopup(false);
             if (res.data.error) {
-                 setShowLoaderPopup(false);
+                // setShowLoaderPopup(false);
                 toast.error(res.data.error);
                 return;
             }
-             setShowLoaderPopup(false);
+            
+            // setShowLoaderPopup(false);
             navigate('/temp', {
                 state: {
                     questions: res.data.questions
@@ -106,14 +138,11 @@ export default function InterviewForm() {
             });
 
         } catch (error) {
-             setShowLoaderPopup(false);
+            // setShowLoaderPopup(false);
             const errMsg = error.response?.data?.error || 'An unexpected error occurred';
-            toast.error(errMsg); 
-        }
-
-        finally {
+            toast.error(errMsg);
+        } finally {
             setLoading(false);
-            //  setShowLoaderPopup(false);
         }
     };
     return (
@@ -201,15 +230,8 @@ export default function InterviewForm() {
                         </div>
 
                         <button type="submit" className={`btn2 ${loading ? 'btn-loading' : ''}`} disabled={loading}>
-                            {/* {loading ? (
-                                <>
-                                    <span className="spinner"></span>
-                                    Generating Questions...
-                                </>
-                            ) : (
-                                "Generate Questions"
-                            )} */}
-                                Generate Questions
+    
+                             { !loading  ? 'Generate Questions'  : 'Generating Questions...'  }
                         </button>
 
                     </form>
@@ -223,19 +245,38 @@ export default function InterviewForm() {
                     />
                 </div>
             </div> 
-
-            
         <Popup
-          open={showLoaderPopup}
-          modal
-          closeOnDocumentClick={false}
-            lockScroll={false}    
-          contentStyle={{ width: '175px', height: '175px', padding: '1rem', background: '#ffffff', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-          overlayStyle={{ background: 'rgba(0,0,0,0.2)' }}
-        >
-          <img src={finalGif} alt="Loading..." style={{ width: '200px', height: '200px' }} />
-        </Popup>
-
+        open={emailpopup}
+        closeOnDocumentClick
+        onClose={closePopup}
+        closeOnEscape
+        modal
+        className="email-popup-content"
+        overlayClassName="email-popup-overlay"
+      >
+        {() => (
+          <div className="email-popup-inner">
+            <h2 className="email-popup-header">
+              Enter your email to generate Interview Questions
+            </h2>
+            <input
+              type="email"
+              placeholder="Enter Business Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="email-popup-input"
+            />
+            <button
+              className="email-popup-button"
+              onClick={handleEmailSubmit}
+              disabled={loading}
+            >
+              {loading ? "Generating..." : "Submit and Generate"}
+            </button>
+          </div>
+        )}
+      </Popup>
+         
             <h2 className='red1'>  Why Choose Our AI Interview Question Generator ? </h2>
 
             <div className='card-div'>
@@ -248,5 +289,8 @@ export default function InterviewForm() {
                 <Footer />
             </div> 
         </>
-    );
+
+  
+);
+   
 } 
