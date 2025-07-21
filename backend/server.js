@@ -10,18 +10,18 @@ const app = express();
 
 app.use(express.json());
 
-// const allowedOrigins = [
-//   'https://questiongenerato.netlify.app',
-//   'https://ai-agents.talview.com',
-// ];
+const allowedOrigins = [
+  'https://questiongenerato.netlify.app',
+  'https://ai-agents.talview.com',
+];
 
-// const corsOptions = {
-//   origin: allowedOrigins,
-//   credentials: true,
-// };
+const corsOptions = {
+  origin: allowedOrigins,
+  credentials: true,
+};
 
-// app.use(cors(corsOptions));
-app.use(cors());
+app.use(cors(corsOptions));
+// app.use(cors());
 
 const headingMap = {
   communication: "Communication Skills",
@@ -42,10 +42,10 @@ const headingMap = {
     const { role, experience, round, assessments, scenario, count ,email} = req.body;
    
   
-    //   await pool.query(
-    //   "INSERT INTO roles(role,email) VALUES ($1,$2)",
-    //   [role,email]
-    // );
+      await pool.query(
+      "INSERT INTO roles(role,email) VALUES ($1,$2)",
+      [role,email]
+    );
     const sectionLines = assessments
       .map(key => {
         const title = headingMap[key] || key;
